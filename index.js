@@ -94,16 +94,12 @@ function endGame() {
 
   document.removeEventListener('keydown', moveDodger);
 
-  resetDodger();
-  START.removeAttribute('style');
-  return START;
-  start();
+  reset();
 }
 
-
-function resetDodger() {
+function reset() {
+  START.removeAttribute('style');
   DODGER.style.left = '180px';
-  return DODGER;
 }
 
 function moveDodger(e) {
