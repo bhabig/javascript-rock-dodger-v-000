@@ -46,11 +46,9 @@ function createRock(x) {
   rock.style.left = `${x}px`
 
   // Hmmm, why would we have used `var` here?
-  var top = 0
+  var top = rock.style.top = 0;
 
-  rock.style.top = top
-
-  GAME.appendChild(rock)
+  GAME.appendChild(rock);
 
 
   /**
@@ -58,8 +56,7 @@ function createRock(x) {
    * seems like a good pace.)
    */
   function moveRock() {
-    var rockNoPx = rock.style.top.replace('px', '');
-    var rockInt = parseInt(rockNoPx, 10);
+    rock.style.top = `${top += 2}px`
 
     // implement me!
     // (use the comments below to guide you!)
@@ -67,7 +64,7 @@ function createRock(x) {
       endGame();
     }
     
-    if((rockInt - 20) > 0) {
+    if(top-20 < 400) {
      window.requestAnimationFrame(moveRock);
     } else if((rockInt - 20) === 0) {
       rock.remove();
@@ -96,6 +93,17 @@ function endGame() {
   ROCKS.forEach(function(rock) {rock.remove()});
 
   document.removeEventListener('keydown', moveDodger);
+
+  resetDodger();
+  START.removeAttribute('style');
+  return START;
+  start();
+}
+
+
+function resetDodger() {
+  DODGER.style.left = '180px';
+  return DODGER;
 }
 
 function moveDodger(e) {
